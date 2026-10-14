@@ -5,7 +5,7 @@ import { Compass, Home, Mail } from "lucide-react";
 import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: "404 | JumpStone",
+  title: "404 | HMLabs",
 };
 
 export default function NotFound() {
@@ -22,7 +22,7 @@ export default function NotFound() {
           </h1>
           <p className="max-w-2xl text-base leading-relaxed">
             It may have been moved or the URL might be incorrect. Use one of the
-            quick links below to continue exploring JumpStone.
+            quick links below to continue exploring HMLabs.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
@@ -76,8 +76,8 @@ export default function NotFound() {
                   {"->"}
                 </span>
               </Link>
-              <Link
-                href="/legal/imprint"
+              <a
+                href="https://henrymeyer.de/legal/imprint"
                 className="inline-flex items-center justify-between rounded-base border border-border/30 bg-background px-3 py-2 text-sm font-heading shadow-sm transition-opacity hover:opacity-80"
               >
                 Imprint
@@ -87,7 +87,7 @@ export default function NotFound() {
                 >
                   {"->"}
                 </span>
-              </Link>
+              </a>
             </div>
           </article>
 

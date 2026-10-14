@@ -16,27 +16,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de";
+const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmlabs.eu";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "HenryMM",
-    template: "%s | HenryMM",
+    default: "HMLabs",
+    template: "%s | HMLabs",
   },
   description:
-    "My personal portfolio, focused on what I build, what I can do, and the projects, tools, and technologies I work with.",
+    "HMLabs is home to independent projects across software, tools, and Minecraft.",
   keywords: [
-    "personal portfolio",
-    "developer",
-    "software developer",
-    "portfolio",
+    "HMLabs",
     "projects",
     "open source",
-    "web development",
-    "gaming",
-    "hardware",
-    "JumpStone",
+    "Minecraft",
+    "software",
   ],
   robots: {
     index: true,
@@ -53,24 +48,23 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    siteName: "Henry aka JumpStone",
-    title: "Henry aka JumpStone | Personal Portfolio & Projects",
+    siteName: "HMLabs",
+    title: "HMLabs | Independent Projects",
     description:
-      "A personal portfolio by Henry aka JumpStone about what I build, what I can do, and the technologies behind my projects.",
+      "HMLabs is home to independent projects across software, tools, and Minecraft.",
     images: [
       {
         url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Henry aka JumpStone personal portfolio",
+        alt: "HMLabs projects",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Henry aka JumpStone | Personal Portfolio & Projects",
-    description:
-      "A personal portfolio by Henry aka JumpStone about what I build, what I can do, and the technologies behind my projects.",
+    title: "HMLabs | Independent Projects",
+    description: "Independent projects across software, tools, and Minecraft.",
     images: [`${baseUrl}/og-image.png`],
   },
   alternates: {
@@ -110,15 +104,16 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Henry aka JumpStone",
+    "@type": "Organization",
+    name: "HMLabs",
     url: baseUrl,
     description:
-      "Personal portfolio by Henry aka JumpStone showing projects, skills, and the technologies behind my work",
+      "HMLabs is home to independent projects across software, tools, and Minecraft.",
     sameAs: [
-      "https://github.com/jumpstone-gaming",
-      "https://github.com/akku-craft",
-      "https://modrinth.com/organization/jumpstone-gaming",
+      "https://github.com/HMLabs-HQ",
+      "https://github.com/HMLabs-Gaming",
+      "https://modrinth.com/organization/9zYhowm8",
+      "https://discord.gg/fuAx3waeHp",
     ],
   };
 
@@ -131,6 +126,10 @@ export default function RootLayout({
       <head />
       <body className="min-h-full flex flex-col">
         <ThemeModeProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
           <SiteChrome />
 
           {children}

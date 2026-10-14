@@ -1,40 +1,34 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui";
+import { Alert, AlertDescription } from "@/components/ui";
 import { getGitHubData } from "@/lib/github";
 
-export default async function GitHubStats({ username }: { username: string }) {
-  const { publicRepos, followers, commits } = await getGitHubData(username);
+const metrics = [
+  { key: "repositories", label: "Repositories" },
+  { key: "commits", label: "Commits" },
+  { key: "stars", label: "Stars" },
+] as const;
 
-  if (publicRepos === null || followers === null) {
-    return (
-      <Alert
-        variant="destructive"
-        className="mt-8 bg-background text-foreground"
-      >
-        <AlertTitle>GitHub stats unavailable</AlertTitle>
-        <AlertDescription>
-          The GitHub API could not be reached at render time. Please retry
-          later.
-        </AlertDescription>
-      </Alert>
-    );
-  }
+export default async function GitHubStats() {
+  const stats = await getGitHubData();
+  const hasUnavailableMetrics = metrics.some(({ key }) => stats[key] === null);
 
   return (
-    <div className="mt-8 flex w-fit flex-wrap items-center gap-8 rounded-base border border-border/30 px-5 py-3 text-main-foreground">
-      <div className="flex items-baseline gap-2">
-        <p className="text-2xl font-heading">{publicRepos}</p>
-        <p className="font-mono text-xs opacity-75">Repos</p>
+    <div className="mt-8">
+      <div className="flex w-fit flex-wrap items-center gap-8 rounded-base border border-border/30 px-5 py-3 text-main-foreground">
+        {metrics.map(({ key, label }) => (
+          <div key={key} className="flex items-baseline gap-2">
+            <p className="text-2xl font-heading">{stats[key] ?? "N/A"}</p>
+            <p className="font-mono text-xs opacity-75">{label}</p>
+          </div>
+        ))}
       </div>
-      <div className="flex items-baseline gap-2">
-        <p className="text-2xl font-heading">{followers}</p>
-        <p className="font-mono text-xs opacity-75">Followers</p>
-      </div>
-      <div className="flex items-baseline gap-2">
-        <p className="text-2xl font-heading">
-          {commits !== null ? commits : "N/A"}
-        </p>
-        <p className="font-mono text-xs opacity-75">Commits</p>
-      </div>
+      {hasUnavailableMetrics ? (
+        <Alert className="mt-3 max-w-xl bg-background text-foreground">
+          <AlertDescription>
+            Some GitHub statistics are temporarily unavailable. Please try again
+            later.
+          </AlertDescription>
+        </Alert>
+      ) : null}
     </div>
   );
 }

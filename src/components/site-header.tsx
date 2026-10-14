@@ -12,25 +12,20 @@ type SiteHeaderProps = {
 
 const socialLinks = [
   {
-    href: "https://github.com/henrymmey",
+    href: "https://github.com/HMLabs-HQ",
     iconName: "github",
-    label: "GitHub",
+    label: "HMLabs-HQ on GitHub",
   },
   {
-    href: "https://codeberg.org/henrymmey",
-    iconName: "codeberg",
-    label: "Codeberg",
-  },
-  {
-    href: "https://modrinth.com/user/HenryMMey",
-    iconName: "modrinth",
-    label: "Modrinth",
+    href: "https://discord.gg/fuAx3waeHp",
+    iconName: "discord",
+    label: "HMLabs Discord server",
   },
 ];
 
 export default function SiteHeader({
-  logoSrc = "/logo.png",
-  siteName = "HenryMM",
+  logoSrc = "/badges/hm.png",
+  siteName = "HMLabs",
 }: SiteHeaderProps) {
   const { effectiveMode } = useThemeMode();
   const [isCompact, setIsCompact] = useState(false);
@@ -111,13 +106,14 @@ export default function SiteHeader({
               Projects
             </Link>
             <a
-              href="https://hmlabs.eu"
+              href="https://gaming.hmlabs.eu"
               target="_blank"
+              rel="noreferrer"
               className={`text-foreground/80 transition-all duration-300 hover:text-foreground focus-visible:outline-none focus-visible:underline ${
                 isCompact ? "text-sm" : "text-base"
               }`}
             >
-              HMLabs
+              HML Gaming
             </a>
             <Link
               href="/links"
@@ -200,10 +196,10 @@ export default function SiteHeader({
                 Projects
               </Link>
               <a
-                href="https://gaming.henrymeyer.de"
+                href="https://gaming.hmlabs.eu"
                 className="rounded-base px-3 py-2 text-foreground/80 transition-colors hover:bg-main hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                HM Gaming
+                HML Gaming
               </a>
               <Link
                 href="/links"

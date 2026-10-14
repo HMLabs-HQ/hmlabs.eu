@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Code of Conduct",
   description:
     "Community guidelines for respectful and inclusive interaction across JumpStone spaces and projects.",
+  alternates: { canonical: "https://hmlabs.eu/code-of-conduct" },
   robots: {
     index: true,
     follow: true,
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     description:
       "Community guidelines for respectful and inclusive interaction across JumpStone spaces.",
     type: "website",
-    url: `${process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de"}/code-of-conduct`,
+    url: `${process.env.NEXT_PUBLIC_URL || "https://hmlabs.eu"}/code-of-conduct`,
   },
 };
 

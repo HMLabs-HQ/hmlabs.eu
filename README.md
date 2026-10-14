@@ -1,6 +1,6 @@
-# main-site
+# HMLabs Website
 
-The main website for [henrymeyer.de](https://henrymeyer.de), built with [Next.js](https://nextjs.org).
+The main website for [hmlabs.eu](https://hmlabs.eu), built with [Next.js](https://nextjs.org).
 
 ## Tech stack
 

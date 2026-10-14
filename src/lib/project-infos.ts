@@ -14,6 +14,7 @@ export type ProjectInfo = {
   showInSitemap?: boolean;
   tags: string[];
   links: ProjectLink[];
+  moreLinks?: ProjectLink[];
   priority: number;
   publishedAt: string;
 };
@@ -28,74 +29,73 @@ type ProjectSortOptions = {
 
 const projectInfos: ProjectInfo[] = [
   {
-    slug: "hmlabs-gaming",
-    title: "HMLabs Gaming",
-    description: "Modpacks, resource packs, and mods for Minecraft.",
-    role: "Founder",
-    showRole: true,
+    slug: "badges",
+    title: "@henrymmey/badges",
+    description:
+      "A collection of badges for displaying your profiles, projects, and communities.",
     showTags: false,
     showDetailsButton: false,
     showInSitemap: false,
-    tags: ["Java", "Design"],
+    tags: [],
     links: [
+      { label: "Website", href: "https://badges.hmlabs.eu" },
+      { label: "GitHub Repo", href: "https://github.com/HMLabs-HQ/badges" },
+    ],
+    moreLinks: [
       {
-        label: "Website",
-        href: "https://gaming.hmlabs.eu",
+        label: "NPM",
+        href: "https://www.npmjs.com/package/@henrymmey/badges",
       },
+      {
+        label: "GitHub Website Repo",
+        href: "https://github.com/HMLabs-HQ/badges-docs",
+      },
+    ],
+
+    priority: 2,
+    publishedAt: "2026-10-13",
+  },
+  {
+    slug: "hmlabs-gaming",
+    title: "HMLabs Gaming",
+    description:
+      "Minecraft projects of all kinds, including mods, modpacks, and resource packs.",
+    showTags: false,
+    showDetailsButton: false,
+    showInSitemap: false,
+    tags: [],
+    links: [
+      { label: "Website", href: "https://gaming.hmlabs.eu" },
+      { label: "GitHub", href: "https://github.com/HMLabs-Gaming" },
+    ],
+    moreLinks: [
       {
         label: "Modrinth",
         href: "https://modrinth.com/organization/9zYhowm8",
       },
       {
-        label: "GitHub",
-        href: "https://github.com/HMLabs-Gaming",
+        label: "CurseForge",
+        href: "https://www.curseforge.com/members/henrymmey/projects",
       },
-    ],
-    priority: 2,
-    publishedAt: "2026-03-09",
-  },
-  {
-    slug: "akku-craft",
-    title: "Akku-Craft",
-    description:
-      "A modular power-bank platform focused on hardware reliability and expandability.",
-    role: "Co-Founder, Hardware Engineering",
-    showRole: true,
-    showTags: false,
-    showDetailsButton: false,
-    showInSitemap: false,
-    tags: ["Arduino", "BMS", "Hardware"],
-    links: [
-      { label: "Website", href: "https://akku-craft.eu" },
-      { label: "GitHub", href: "https://github.com/akku-craft" },
+      {
+        label: "SpigotMC",
+        href: "https://www.spigotmc.org/members/henrymmey.2623317/",
+      },
+      {
+        label: "Hangar",
+        href: "https://hangar.papermc.io/HMLabs-Gaming",
+      },
+      {
+        label: "Planet Minecraft",
+        href: "https://www.planetminecraft.com/member/henrymmey/",
+      },
+      {
+        label: "Release Workflows documentation",
+        href: "https://release-workflows.gaming.hmlabs.eu/",
+      },
     ],
     priority: 1,
-    publishedAt: "2025-10-25",
-  },
-
-  {
-    slug: "awesome-ai-for-beginners",
-    title: "Awesome AI for Beginners",
-    description:
-      "A curated list of resources for learning artificial intelligence.",
-    role: "",
-    showRole: false,
-    showTags: false,
-    showDetailsButton: false,
-    showInSitemap: false,
-    tags: ["AI", "Awesome List"],
-    links: [
-      {
-        label: "Repository",
-        href: "https://github.com/henrymmey/awesome-ai-for-beginners",
-      },
-      {
-        label: "Website",
-        href: "https://aiforbeginners.henrymeyer.de",
-      },
-    ],
-    priority: 3,
-    publishedAt: "2026-05-10",
+    publishedAt: "2025-12-31",
   },
 ];
 
@@ -122,19 +122,11 @@ export function getProjectInfosSorted(
 
     if (sortBy === "priority") {
       const primary = direction === "asc" ? priorityDiff : -priorityDiff;
-      if (primary !== 0) {
-        return primary;
-      }
-
-      return direction === "asc" ? -dateDiff : dateDiff;
+      return primary || (direction === "asc" ? -dateDiff : dateDiff);
     }
 
     const primary = direction === "asc" ? dateDiff : -dateDiff;
-    if (primary !== 0) {
-      return primary;
-    }
-
-    return direction === "asc" ? priorityDiff : -priorityDiff;
+    return primary || (direction === "asc" ? priorityDiff : -priorityDiff);
   });
 }
 

@@ -1,14 +1,13 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://henrymeyer.de";
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://hmlabs.eu";
 
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/contact/verify", "/tor"],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
