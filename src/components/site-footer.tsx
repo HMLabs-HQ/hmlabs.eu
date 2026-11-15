@@ -103,19 +103,32 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-4 rounded-base border border-border/30 bg-main px-4 py-3 text-sm text-main-foreground">
-          <div>© 2026 HML. Code licensed under GPL-3.0.</div>
-          <div className="mt-1 text-xs text-main-foreground/70">
-            Running on{" "}
-            <a
-              className="underline underline-offset-2"
-              href={commitUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {commitSha ? commitSha.slice(0, 7) : "main"}
-            </a>
+        <div className="mt-4 flex flex-col gap-3 rounded-base border border-border/30 bg-main px-4 py-3 text-sm text-main-foreground md:flex-row md:items-center md:justify-between">
+          <div>
+            <div>© 2026 Henry Meyer. Code licensed under GPL-3.0.</div>
+            <div className="mt-1 text-xs text-main-foreground/70">
+              Running on{" "}
+              <a
+                className="underline underline-offset-2"
+                href={commitUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {commitSha ? commitSha.slice(0, 7) : "main"}
+              </a>
+            </div>
           </div>
+          <a
+            className="inline-block"
+            href="https://www.netlify.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://www.netlify.com/assets/badges/netlify-badge-light.svg"
+              alt="Deploys by Netlify"
+            />
+          </a>
         </div>
       </div>
     </footer>
